@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap");
+
+:root {
+  --bf-red: #e0122b;
+  --bf-red-dark: #b80e22;
+  --bf-black: #121212;
+  --bf-cream: #f6f3ec;
+  --bf-green: #25d366;
+  --bf-green-dark: #128c7e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--bf-black);
+  overflow-x: hidden;
+  background: radial-gradient(at 20% 10%, rgba(224, 18, 43, 0.05) 0%, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(244, 216, 63, 0.08) 0%, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(37, 211, 102, 0.03) 0%, transparent 50%), var(--bf-cream);
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: "Anton", sans-serif;
+}
+.font-brush {
+  font-family: "Caveat", cursive;
+}
+html[dir="rtl"] body {
+  font-family: "Tajawal", sans-serif;
+}
+html[dir="rtl"] .font-display {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+}
+html[dir="rtl"] .font-brush {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+}
+
+.brush-underline {
+  position: relative;
+  display: inline-block;
+}
+.brush-underline::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -0.08em;
+  height: 0.28em;
+  background: var(--bf-red);
+  transform: rotate(-1deg) scaleX(0);
+  transform-origin: left center;
+  border-radius: 2px;
+  z-index: -1;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html[dir="rtl"] .brush-underline::after {
+  transform-origin: right center;
+}
+.brush-underline.in-view::after {
+  transform: rotate(-1deg) scaleX(1);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .brush-underline::after {
+    transition: none;
+    transform: rotate(-1deg) scaleX(1);
+  }
+  .animate-marquee,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}
+
+.btn-magnetic {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-magnetic:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 24px -6px rgba(224, 18, 43, 0.55);
+}
+
+.step-badge {
+  background: var(--bf-red);
+  color: white;
+  font-family: "Anton", sans-serif;
+}
+html[dir="rtl"] .step-badge {
+  font-family: "Tajawal", sans-serif;
+}
+
+.fab-whatsapp {
+  position: fixed;
+  z-index: 50;
+  bottom: 18px;
+  right: 18px;
+  background: var(--bf-green);
+}
+html[dir="rtl"] .fab-whatsapp {
+  right: auto;
+  left: 18px;
+}
+.fab-whatsapp:hover {
+  background: var(--bf-green-dark);
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+html[dir="rtl"] .animate-marquee {
+  animation: marquee-rtl 25s linear infinite;
+}
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--bf-red);
+  z-index: 60;
+  transform-origin: left center;
+  transition: transform 0.1s ease;
+}
+html[dir="rtl"] .scroll-progress {
+  transform-origin: right center;
+}
+
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(224, 18, 43, 0.25);
+}
+.card-hover:hover .card-img {
+  transform: scale(1.08);
+}
+.card-img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skeleton {
+  position: relative;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.page-enter {
+  animation: bf-page-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes bf-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marquee-bar {
+  background: #121212;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.instagram-hover {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.instagram-hover:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  transform: scale(1.05);
+}
+
+.about-block {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.about-block:last-of-type {
+  border-bottom: 0;
+}
+
+.lang-dropdown {
+  right: 0;
+  left: auto;
+  text-align: left;
+}
+html[dir="rtl"] .lang-dropdown {
+  left: 0;
+  right: auto;
+  text-align: right;
+}
+
+.hl-key {
+  font-weight: 700;
+  color: inherit;
+}
