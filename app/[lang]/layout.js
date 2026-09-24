@@ -65,9 +65,9 @@ function jsonLd(lang) {
     ],
     aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "6", bestRating: "5" },
     review: [
-      { "@type": "Review", author: { "@type": "Person", name: "Mécanique Machhor" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Everything is fine, thank you Yassin" },
-      { "@type": "Review", author: { "@type": "Person", name: "outman el_wechki" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Good service" },
-      { "@type": "Review", author: { "@type": "Person", name: "karim elbrihi" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Top" },
+      { "@type": "Review", itemReviewed: { "@type": "LocalBusiness", name: "BE FREE Marrakech" }, author: { "@type": "Person", name: "Mécanique Machhor" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Everything is fine, thank you Yassin" },
+      { "@type": "Review", itemReviewed: { "@type": "LocalBusiness", name: "BE FREE Marrakech" }, author: { "@type": "Person", name: "outman el_wechki" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Good service" },
+      { "@type": "Review", itemReviewed: { "@type": "LocalBusiness", name: "BE FREE Marrakech" }, author: { "@type": "Person", name: "karim elbrihi" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Top" },
     ],
   };
 }
